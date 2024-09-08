@@ -68,7 +68,31 @@ serverless deploy
 
 ### APi Documentation
 
-1.Create Todo
+1.Login
+
+Endpoint: /todos/login
+Method: POST
+Description: Logs in a user using AWS Cognito and returns token.
+Request Body:
+
+```
+{
+"username": "your_username",
+"password": "your_password"
+}
+```
+
+Note: Create a user in cognito user pool to get in order to have the user's account that will be used in generating token
+
+Responses:
+
+```
+200 OK: Returns the token from Cognito.
+400 Bad Request: If required fields are missing.
+401 Unauthorized: If login credentials are incorrect
+```
+
+2.Create Todo
 
 Endpoint: /todos
 Method: POST
@@ -91,7 +115,7 @@ Responses:
 500 Internal Server Error: If an error occurs while creating the todo.
 ```
 
-2.Get Todos
+3.Get Todos
 
 Endpoint: /todos
 Method: GET
@@ -107,7 +131,7 @@ Responses:
 
 Note: Make sure the body is empty to avoid errors
 
-3.Update Todo
+4.Update Todo
 
 Endpoint: /todos/{id}
 Method: PUT
@@ -136,7 +160,7 @@ Responses:
 500 Internal Server Error: If an error occurs while updating the todo.
 ```
 
-4.Delete Todo
+5.Delete Todo
 
 Endpoint: /todos/{id}
 Method: DELETE
@@ -154,28 +178,4 @@ Responses:
 ```
 200 OK: If the todo item is successfully deleted.
 500 Internal Server Error: If an error occurs while deleting the todo.
-```
-
-5.Login
-
-Endpoint: /todos/login
-Method: POST
-Description: Logs in a user using AWS Cognito and returns token.
-Request Body:
-
-```
-{
-"username": "your_username",
-"password": "your_password"
-}
-```
-
-Note: Create a user in cognito user pool to get in order to have the user's account that will be used in generating token
-
-Responses:
-
-```
-200 OK: Returns the token from Cognito.
-400 Bad Request: If required fields are missing.
-401 Unauthorized: If login credentials are incorrect
 ```
